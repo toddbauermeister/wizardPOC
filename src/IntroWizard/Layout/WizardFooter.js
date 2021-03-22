@@ -1,14 +1,17 @@
 import React from 'react';
 
 const WizardFooter = props => {
+    const {parentProps} = props;
+    const notFirstStep = () => parentProps.currentStep !== 1;
+    const notlastStep = () => parentProps.currentStep !== parentProps.totalSteps;
     return <div>
-        {props.parentProps.currentStep !== 1 && <div>
-            <button onClick={props.parentProps.previousStep}>
+        {notFirstStep() && <div>
+            <button onClick={parentProps.previousStep}>
                 Back
             </button>
         </div>}
-        {props.parentProps.currentStep !== props.parentProps.totalSteps && <div>
-            <button onClick={props.parentProps.nextStep}>
+        {notlastStep() && <div>
+            <button onClick={parentProps.nextStep}>
                 Next
             </button>
         </div>}
